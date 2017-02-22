@@ -1,0 +1,63 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestClient", "TestClient\TestClient.vcxproj", "{AA32A989-D260-43BE-8A10-148B697ABB48}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TcpService", "TcpService\TcpService.vcxproj", "{CA32F351-BDEF-475C-B1A4-9913D3738629}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SccMediatorLib", "SccMediatorLib\SccMediatorLib.vcxproj", "{8930E7ED-1D4F-4FF3-8ECD-43E900292102}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AA32A989-D260-43BE-8A10-148B697ABB48}.Debug|x64.ActiveCfg = Debug|x64
+		{AA32A989-D260-43BE-8A10-148B697ABB48}.Debug|x64.Build.0 = Debug|x64
+		{AA32A989-D260-43BE-8A10-148B697ABB48}.Debug|x86.ActiveCfg = Debug|Win32
+		{AA32A989-D260-43BE-8A10-148B697ABB48}.Debug|x86.Build.0 = Debug|Win32
+		{AA32A989-D260-43BE-8A10-148B697ABB48}.Release|x64.ActiveCfg = Release|x64
+		{AA32A989-D260-43BE-8A10-148B697ABB48}.Release|x64.Build.0 = Release|x64
+		{AA32A989-D260-43BE-8A10-148B697ABB48}.Release|x86.ActiveCfg = Release|Win32
+		{AA32A989-D260-43BE-8A10-148B697ABB48}.Release|x86.Build.0 = Release|Win32
+		{CA32F351-BDEF-475C-B1A4-9913D3738629}.Debug|x64.ActiveCfg = Debug|x64
+		{CA32F351-BDEF-475C-B1A4-9913D3738629}.Debug|x64.Build.0 = Debug|x64
+		{CA32F351-BDEF-475C-B1A4-9913D3738629}.Debug|x86.ActiveCfg = Debug|Win32
+		{CA32F351-BDEF-475C-B1A4-9913D3738629}.Debug|x86.Build.0 = Debug|Win32
+		{CA32F351-BDEF-475C-B1A4-9913D3738629}.Release|x64.ActiveCfg = Release|x64
+		{CA32F351-BDEF-475C-B1A4-9913D3738629}.Release|x64.Build.0 = Release|x64
+		{CA32F351-BDEF-475C-B1A4-9913D3738629}.Release|x86.ActiveCfg = Release|Win32
+		{CA32F351-BDEF-475C-B1A4-9913D3738629}.Release|x86.Build.0 = Release|Win32
+		{8930E7ED-1D4F-4FF3-8ECD-43E900292102}.Debug|x64.ActiveCfg = Debug|x64
+		{8930E7ED-1D4F-4FF3-8ECD-43E900292102}.Debug|x64.Build.0 = Debug|x64
+		{8930E7ED-1D4F-4FF3-8ECD-43E900292102}.Debug|x86.ActiveCfg = Debug|Win32
+		{8930E7ED-1D4F-4FF3-8ECD-43E900292102}.Debug|x86.Build.0 = Debug|Win32
+		{8930E7ED-1D4F-4FF3-8ECD-43E900292102}.Release|x64.ActiveCfg = Release|x64
+		{8930E7ED-1D4F-4FF3-8ECD-43E900292102}.Release|x64.Build.0 = Release|x64
+		{8930E7ED-1D4F-4FF3-8ECD-43E900292102}.Release|x86.ActiveCfg = Release|Win32
+		{8930E7ED-1D4F-4FF3-8ECD-43E900292102}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 4
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://tfs:8080/tfs/%D0%9A%D0%BE%D0%BD%D1%82%D1%83%D1%80-%D0%9D%D0%98%D0%98%D0%A0%D0%A1
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = TestClient\\TestClient.vcxproj
+		SccProjectName1 = TestClient
+		SccLocalPath1 = TestClient
+		SccProjectUniqueName2 = TcpService\\TcpService.vcxproj
+		SccProjectName2 = TcpService
+		SccLocalPath2 = TcpService
+		SccProjectUniqueName3 = SccMediatorLib\\SccMediatorLib.vcxproj
+		SccProjectName3 = SccMediatorLib
+		SccLocalPath3 = SccMediatorLib
+	EndGlobalSection
+EndGlobal
