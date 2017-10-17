@@ -1,40 +1,42 @@
-#pragma region Additional libs
-#pragma comment(lib, "advapi32.lib")
-#pragma comment (lib, "Ws2_32.lib")
-#pragma comment (lib, "Mswsock.lib")
-#pragma comment (lib, "AdvApi32.lib")
-#pragma comment( lib, "SccDeviceLib.lib" )
-#pragma endregion
+#define WIN32_LEAN_AND_MEAN
 
 #include <tchar.h>
 #include <iostream>
 #include <string>
-#include <fstream>
-#include <WinSock2.h>
 
-#include "ServiceManager/ServiceConsoleManager.h"
-#include "ServiceManager/ProxyService.h"
-#include "SccService.h"
-#include "SccServerNPIO.h"
+//#define SERVICE_MODE
 
+// Used for basic operations with windows service
+#include "../ServiceManager/ServiceConsoleManager.h"
+// Implementation of Scc Service via TCP using Scc Server
+#include "ServiceManager/ProxyService.h" 
+// Implementation of Server
+#include "SccServerIOCP.h"
+
+// Turn on service mode, off - console application
+#ifndef  SERVICE_MODE
+
+#else
 #pragma region Service parameters
 #define SVCNAME _T("SccLibProxy")
 #define SVCDISPLAYNAME _T("SccLib Proxy Service")
 #define SVCDESCR _T("Provide the usage of SccLib via TCP")
 #pragma endregion
 
-int __cdecl _tmain(int argc, TCHAR* argv[])
-{
-	WSADATA wsaData;
-	if (WSAStartup(MAKEWORD(2, 2), &wsaData) != 0) {
-		return WSAGetLastError();
-	}
+#endif
+#ifdef _WIN64
+	#pragma comment (lib, "SccDeviceLib64.lib")
+#else 
+	#pragma comment (lib, "SccDeviceLib86.lib")
+#endif
 
+void __cdecl _tmain(int argc, TCHAR* argv[])
+{
 #ifdef SERVICE_MODE
 	if (argc == 2) {
 		if (lstrcmpi(argv[1], _T("install")) == 0)
 		{
-			if (ServiceConsoleManager::InstallSvc(SVCNAME, SVCDISPLAYNAME, SVCDESCR))
+			if (ServiceConsoleManager::InstallSvcLocal(SVCNAME, SVCDISPLAYNAME, SVCDESCR))
 				std::cout << "Service Installed.\n";
 			else
 				std::cout << "Failed to install service!.\n";
@@ -43,6 +45,7 @@ int __cdecl _tmain(int argc, TCHAR* argv[])
 
 		if (lstrcmpi(argv[1], _T("del")) == 0)
 		{
+
 			if (ServiceConsoleManager::DeleteSvc(SVCNAME))
 				std::cout << "Service deleted.\n";
 			else
@@ -73,17 +76,19 @@ int __cdecl _tmain(int argc, TCHAR* argv[])
 	// Check service installation 
 	if (ServiceConsoleManager::getServiceStatus(SVCNAME) == 0) return;
 
-	// Initialize service and run it
+	// InitializeSender service and run it
 	ProxyService prxSvc(SVCNAME);
 	ServiceDispatcher::Run(prxSvc);
 
 #else
-	//SccService service;
-	//service.AsyncStart(_T("127.0.0.1"), 1488, 256);
-	SccServerNPIO serverNPIO;
-	if (!serverNPIO.Start()) std::cout << "Server initialization fatal." << std::endl;
+	auto  scc_server_iocp = &SccServerIOCPSingleton::Instance();
+	auto errStart = scc_server_iocp->Start(nullptr, DEFAULT_PORT);
+	if (errStart)
+		std::cout << "Server initialization failed. Error code: " << errStart <<  std::endl;
+	//press any key to stop service
 	system("pause");
-	serverNPIO.Stop();
+	if (scc_server_iocp->Stop())
+		std::cout << "Server stopped.\n";
+	system("pause");
 #endif
-	return 0;
 }

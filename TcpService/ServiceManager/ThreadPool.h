@@ -39,9 +39,7 @@
 \***************************************************************************/
 
 #pragma once
-
 #include <memory>
-#include <Windows.h>
 
 class CThreadPool
 {

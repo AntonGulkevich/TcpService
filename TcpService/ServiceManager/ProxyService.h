@@ -1,12 +1,9 @@
 ﻿#pragma once
-
-#include <Windows.h>
-#include <map> 
 #include  <tchar.h>
 
 #include "ServiceDispatcher.h"
 #include "ThreadPool.h"
-
+#include "../SccServerIOCP.h"
 
 class ProxyService : public ServiceDispatcher
 {
@@ -20,5 +17,4 @@ protected:
 public:
 	explicit ProxyService(LPTSTR name);
 	~ProxyService();
-
 };

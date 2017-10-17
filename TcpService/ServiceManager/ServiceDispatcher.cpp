@@ -1,12 +1,11 @@
 ﻿#include "ServiceDispatcher.h"
-#include <cassert>
+#include <winbase.h>
+#include <strsafe.h>
 
 ServiceDispatcher * ServiceDispatcher::dsp_svc = nullptr;
 
 void ServiceDispatcher::SvcMain()
 {
-	assert(dsp_svc != NULL);
-
 	// Register the handler function for the service
 	dsp_svc->svcStatusHandle = RegisterServiceCtrlHandler(
 		dsp_svc->svcName_, SvcCtrlHandler);
@@ -66,7 +65,7 @@ void ServiceDispatcher::Start()
 	catch (...)
 	{
 		AddErrorLogEntry(L"Service failed to start.", EVENTLOG_ERROR_TYPE);
-		ReportSvcStatus(SERVICE_STOPPED,NO_ERROR, 0);
+		ReportSvcStatus(SERVICE_STOPPED, NO_ERROR, 0);
 	}
 }
 
@@ -168,27 +167,28 @@ void ServiceDispatcher::ReportSvcStatus(DWORD dwCurrentState, DWORD dwWin32ExitC
 
 void ServiceDispatcher::AddEventLogEntry(LPCTSTR message, WORD type) const
 {
-	HANDLE hEventLog = nullptr;
+	auto hEventLog = RegisterEventSource(nullptr, svcName_);
+	//If the function fails, the return value is NULL.To get extended error information, call GetLastError.
+	if (hEventLog == nullptr)
+		return;
 	LPCWSTR lpcwString[2] = { nullptr, nullptr };
-	hEventLog = RegisterEventSource(nullptr, svcName_);
-	if (hEventLog)
-	{
-		lpcwString[0] = svcName_;
-		lpcwString[1] = message;
 
-		ReportEvent(
-			hEventLog, //A handle to the event log. 
-			type,// The type of event to be logged				
-			0, // Event category
-			0, // Event identifier
-			nullptr, //A pointer to the current user's security identifier. 
-			2, // The number of insert strings in the array pointed to by the lpStrings parameter.
-			0, // No binary data
-			lpcwString,
-			nullptr //A pointer to the buffer containing the binary data.
-		);
-		DeregisterEventSource(hEventLog);
-	}
+	lpcwString[0] = svcName_;
+	lpcwString[1] = message;
+
+	ReportEvent(
+		hEventLog, //A handle to the event log. 
+		type,// The type of event to be logged				
+		0, // Event category
+		0, // Event identifier
+		nullptr, //A pointer to the current user's security identifier. 
+		2, // The number of insert strings in the array pointed to by the lpStrings parameter.
+		0, // No binary data
+		lpcwString,
+		nullptr //A pointer to the buffer containing the binary data.
+	);
+	DeregisterEventSource(hEventLog);
+
 }
 
 void ServiceDispatcher::AddErrorLogEntry(PTSTR pszFunction, DWORD dwError) const
@@ -219,7 +219,7 @@ ServiceDispatcher::ServiceDispatcher(PTSTR svsName) :
 		0,					//dwServiceSpecificExitCode
 		0,					//dwCheckPoint
 		0 }),				//dwWaitHint
-	svcStatusHandle(nullptr)
+		svcStatusHandle(nullptr)
 {
 
 }

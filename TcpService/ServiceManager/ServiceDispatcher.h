@@ -1,7 +1,6 @@
 ﻿#pragma once
-
-#include <Windows.h>
-#include <strsafe.h>
+#include "WinSock2.h"
+#include "Windows.h"
 
 class ServiceDispatcher
 {

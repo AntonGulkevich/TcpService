@@ -18,33 +18,51 @@
     <ClCompile Include="TcpServiceMain.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SccService.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ServiceManager\ProxyService.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ServiceManager\ServiceConsoleManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ServiceManager\ServiceDispatcher.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="SccServerIOCP.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ClientContext.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="VirtualDevice.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="SccService.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="ServiceManager\ProxyService.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ServiceManager\ServiceConsoleManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ServiceManager\ServiceDispatcher.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ServiceManager\ThreadPool.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SccServerIOCP.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ClientContext.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="VirtualDevice.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CircleBuffer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IVirtualChannel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IChannelIn.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IChannelOut.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
