@@ -22,7 +22,6 @@ BOOL ServiceConsoleManager::DeleteSvc(LPCTSTR svcName)
 	CloseServiceHandle(schService);
 	CloseServiceHandle(schSCManager);
 	return TRUE;
-123
 }
 
 BOOL ServiceConsoleManager::InstallSvcLocal(LPCTSTR svcName, LPCTSTR svcDisplayName, LPTSTR svcDecription)
